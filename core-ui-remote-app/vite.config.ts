@@ -41,4 +41,5 @@ export default defineConfig({
       },
     },
   },
+  base: 'react-microfrontend-demo/remote/',
 })

@@ -3,6 +3,10 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import babel from '@rolldown/plugin-babel'
 import { federation } from '@module-federation/vite';
 // https://vite.dev/config/
+const isProduction = process.env.NODE_ENV === 'production';
+const remoteEntryUrl = isProduction
+  ? 'https://akuralkar.github.io/react-microfrontend-demo/remoteEntry.js'
+  : 'http://localhost:3000/remoteEntry.js';
 export default defineConfig({
   server: {
     port: 5173,
@@ -16,7 +20,7 @@ export default defineConfig({
         'remote-app': {
           type: 'module',
           name: 'remote-app',
-          entry: 'http://localhost:3000/remoteEntry.js',
+          entry: remoteEntryUrl,
         }
       },
       shared: {
@@ -39,4 +43,5 @@ export default defineConfig({
       },
     },
   },
+  base: 'react-microfrontend-demo/host/',
 })
