@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  workflow-dispatch: {}
 
 permissions:
   contents: read
@@ -27,13 +26,13 @@ jobs:
             core-ui-remote-app/package-lock.json
             portal-ui-host-app/package-lock.json
 
-      - name: Install & build remote core-ui-remote-app
+      - name: Install & build core-ui-remote-app
         working-directory: core-ui-remote-app
         run: |
           npm ci
           npm run build
       
-      - name: Install & build remote portal-ui-host-app
+      - name: Install & build portal-ui-host-app
         working-directory: portal-ui-host-app
         run: |
           npm ci
