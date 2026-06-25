@@ -3,6 +3,7 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import babel from '@rolldown/plugin-babel'
 import { federation } from '@module-federation/vite';
 
+const isProduction = process.env.NODE_ENV === 'production';
 // https://vite.dev/config/
 export default defineConfig({
   server: {
@@ -41,5 +42,5 @@ export default defineConfig({
       },
     },
   },
-  base: 'react-microfrontend-demo/remote/',
+  base: isProduction ? '/react-microfrontend-demo/remote/' : '/',
 })
