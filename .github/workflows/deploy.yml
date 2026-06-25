@@ -29,17 +29,18 @@ jobs:
       - name: Install & build core-ui-remote-app
         working-directory: core-ui-remote-app
         run: |
-          npm ci --include=optional
+          npm install
           npm run build
       
       - name: Install & build portal-ui-host-app
         working-directory: portal-ui-host-app
         run: |
-          npm ci --include=optional
+          npm install
           npm run build
 
       - name: Assemble site
         run: |
+          # 1. Create a clean root distribution directory for host and remote apps
           mkdir -p dist/host dist/remote
           # 1. Copy the host app directly to the root of dist so it loads first
           cp -r portal-ui-host-app/dist/* dist/host/

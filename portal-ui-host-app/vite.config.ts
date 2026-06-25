@@ -5,7 +5,7 @@ import { federation } from '@module-federation/vite';
 // https://vite.dev/config/
 const isProduction = process.env.NODE_ENV === 'production';
 const remoteEntryUrl = isProduction
-  ? 'https://akuralkar.github.io/react-microfrontend-demo/remoteEntry.js'
+  ? 'https://akuralkar.github.io/react-microfrontend-demo/remote/remoteEntry.js'
   : 'http://localhost:3000/remoteEntry.js';
 export default defineConfig({
   server: {
