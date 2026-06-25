@@ -29,13 +29,17 @@ jobs:
       - name: Install & build core-ui-remote-app
         working-directory: core-ui-remote-app
         run: |
-          npm install
+          # Remove the local lockfile so npm dynamically fetches the correct Linux binaries
+          rm -f package-lock.json
+          npm install --platform=linux --arch=x64
           npm run build
       
       - name: Install & build portal-ui-host-app
         working-directory: portal-ui-host-app
         run: |
-          npm install
+          # Remove the local lockfile so npm dynamically fetches the correct Linux binaries
+          rm -f package-lock.json
+          npm install --platform=linux --arch=x64
           npm run build
 
       - name: Assemble site
