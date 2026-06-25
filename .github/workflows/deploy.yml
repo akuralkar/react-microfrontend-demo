@@ -29,20 +29,22 @@ jobs:
       - name: Install & build core-ui-remote-app
         working-directory: core-ui-remote-app
         run: |
-          npm ci
+          npm ci --include=optional
           npm run build
       
       - name: Install & build portal-ui-host-app
         working-directory: portal-ui-host-app
         run: |
-          npm ci
+          npm ci --include=optional
           npm run build
 
       - name: Assemble site
         run: |
           mkdir -p dist/host dist/remote
-          cp -r core-ui-remote-app/dist/* dist/remote/
+          # 1. Copy the host app directly to the root of dist so it loads first
           cp -r portal-ui-host-app/dist/* dist/host/
+          # 2. Copy the remote app into its dedicated subfolder
+          cp -r core-ui-remote-app/dist/* dist/remote/
           echo '<a href="./host/index.html">Host App</a>' > dist/index.html
 
       - name: Upload artifact
